@@ -1,43 +1,31 @@
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
 public class SortPlayers {
 
-    public void sortByNameAscending(List players) {
+    public static void sortByNameAscending(List<Player> players) {
         Collections.sort(players);
     }
 
-    public void sortByNameDescending(List players) {
-        SortByNameDown sortByNameDescending = new SortByNameDown();
-        Collections.sort(players, sortByNameDescending);
+    public static void sortByNameDescending(List<Player> players) {
+        SortByNameDescending sortByNameDescending = new SortByNameDescending();
+        players.sort(sortByNameDescending);
     }
 
-    public void sortByScoreAscending(List players) {
-        sortByScoreAscending scoreAscending = new sortByScoreAscending();
-        Collections.sort(players, scoreAscending);
+    public static void sortByScoreAscending(List<Player> players) {
+        SortByScoreAscending scoreAscending = new SortByScoreAscending();
+        players.sort(scoreAscending);
     }
 
-    public void sortByScoreDescending(List<Player> players) {
-        Collections.sort(players, (o1, o2) -> {
-            if (o1.getScore() > o2.getScore())
-                return -1;
-            if (o1.getScore() < o2.getScore())
-                return 1;
-            return 0;
-        });
+    public static void sortByScoreDescending(List<Player> players) {
+        players.sort((o1, o2) -> Integer.compare(o2.getScore(), o1.getScore()));
     }
 
-    class sortByScoreAscending implements Comparator<Player> {
-
+    static class SortByScoreAscending implements Comparator<Player> {
         @Override
         public int compare(Player o1, Player o2) {
-            if (o1.getScore() > o2.getScore())
-                return 1;
-            if (o1.getScore() < o2.getScore())
-                return -1;
-            return 0;
+            return Integer.compare(o1.getScore(), o2.getScore());
         }
     }
 }

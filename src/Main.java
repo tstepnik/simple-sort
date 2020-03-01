@@ -2,8 +2,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
+
     public static void main(String[] args) {
-        SortPlayers sortPlayers = new SortPlayers();
         List<Player> players = new ArrayList<>();
 
         players.add(new Player("Robert", 100));
@@ -13,22 +13,27 @@ public class Main {
         players.add(new Player("King", 230));
 
         System.out.println("Lista nieposortowana: ");
-        players.forEach(System.out::println);
+        printPlayers(players);
 
         System.out.println();
-        sortPlayers.sortByScoreDescending(players);
-        players.forEach(System.out::println);
+        SortPlayers.sortByScoreDescending(players);
+        printPlayers(players);
 
         System.out.println();
-        sortPlayers.sortByScoreAscending(players);
-        players.forEach(System.out::println);
+        SortPlayers.sortByScoreAscending(players);
+        printPlayers(players);
 
         System.out.println();
-        sortPlayers.sortByNameDescending(players);
-        players.forEach(System.out::println);
+        SortPlayers.sortByNameDescending(players);
+        printPlayers(players);
 
         System.out.println();
-        sortPlayers.sortByNameAscending(players);
-        players.forEach(System.out::println);
+        SortPlayers.sortByNameAscending(players);
+        printPlayers(players);
+
+    }
+
+    private static void printPlayers(List<Player> list) {
+        list.forEach(System.out::println);
     }
 }
